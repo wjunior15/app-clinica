@@ -90,10 +90,10 @@ VALUES
     ('550e8400-e29b-41d4-a716-446655440002', '4445556666', 'Friend');
 
 -- Insert sample data into consulta table
-INSERT INTO consulta (ID_paciente, ID_medico, ID_empresa, num_plano, data_consulta, horas, status_consulta)
+INSERT INTO consulta (ID_paciente, ID_medico, ID_empresa, num_plano, data_consulta, horas, status_consulta, especialidade)
 VALUES 
-    ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440005', '550e8400-e29b-41d4-a716-446655440003', 1, '2024-03-10', '10:00:00', 'Scheduled'),
-    ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440003', 2, '2024-04-05', '11:30:00', 'Completed');
+    ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440005', '550e8400-e29b-41d4-a716-446655440003', 1, '2024-03-10', '10:00:00', 'Scheduled', 'Orthopedics'),
+    ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440003', 2, '2024-04-05', '11:30:00', 'Completed', 'Cardiology');
 
 -- Update existing records in funcionario table to set id_dept to NULL
 UPDATE funcionario

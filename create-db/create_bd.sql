@@ -161,6 +161,7 @@ CREATE TABLE consulta(
     data_consulta DATE NOT NULL,
     horas TIME NOT NULL,
     status_consulta VARCHAR(50) NOT NULL,
+    especialidade VARCHAR(50) NOT NULL,
     PRIMARY KEY(ID_paciente, ID_medico, data_consulta),
     FOREIGN KEY(ID_paciente) REFERENCES paciente(ID_paciente),
     FOREIGN KEY(ID_medico) REFERENCES medico(ID_func),
