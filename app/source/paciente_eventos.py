@@ -58,14 +58,14 @@ def consulta_paciente(dados):
     conn = conn_db.conn_db()
     cur = conn.cursor()
     cur.execute("""
-                SELECT funcionario.nome AS "medico", consulta.horas AS "horario", consulta.status_consulta AS "status", consulta.especialidade
+                SELECT funcionario.nome AS "medico", consulta.horas AS "horario", consulta.status_consulta AS "status", consulta.especialidade, consulta.data_consulta AS "data"
                 FROM consulta, funcionario
                 WHERE consulta.ID_medico = funcionario.ID_func
                 AND consulta.ID_paciente IN (SELECT ID_paciente
                                             FROM paciente
                                             WHERE nome LIKE '%{nome_busca}%')
                 UNION
-                SELECT funcionario.nome AS "medico", procedimento.horas AS "horario", procedimento.status_procedimento AS "status", cirurgia.especialidade
+                SELECT funcionario.nome AS "medico", procedimento.horas AS "horario", procedimento.status_procedimento AS "status", cirurgia.especialidade, procedimento.data_procedimento AS "data"
                 FROM procedimento, funcionario, cirurgia
                 WHERE procedimento.ID_medico = funcionario.ID_func
                 AND procedimento.ID_procedimento = cirurgia.ID_procedimento
@@ -73,7 +73,7 @@ def consulta_paciente(dados):
                                             FROM paciente
                                             WHERE nome LIKE '%{nome_busca}%')
                 UNION
-                SELECT funcionario.nome AS "medico", procedimento.horas AS "horario", procedimento.status_procedimento AS "status", exame.tipo AS "especialidade"
+                SELECT funcionario.nome AS "medico", procedimento.horas AS "horario", procedimento.status_procedimento AS "status", exame.tipo AS "especialidade", procedimento.data_procedimento AS "data"
                 FROM procedimento, funcionario, exame
                 WHERE procedimento.ID_medico = funcionario.ID_func
                 AND procedimento.ID_procedimento = exame.ID_procedimento
@@ -91,7 +91,8 @@ def consulta_paciente(dados):
                 'medico':row[0],
                 'horario':row[1].strftime("%H:%M"),
                 'status':row[2],
-                'especialidade':row[3]
+                'especialidade':row[3],
+                'data':row[4].strftime("%d/%m/%Y")
             }
             arr_eventos.append(dict_evento)
         return {'eventos':arr_eventos}, 200
