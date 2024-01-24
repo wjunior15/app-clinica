@@ -1,2 +1,3 @@
 app/venv
 config.py
+__pycache__
