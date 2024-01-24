@@ -17,8 +17,7 @@ def add_consulta_plano(dados):
         cur.execute("""
                         SELECT ID_paciente
                         FROM paciente
-                        WHERE cpf = {cpf}
-                        LIMIT 1;
+                        WHERE cpf = '{cpf}'
                     """.format(cpf = cpf_paciente))
         pacientes = cur.fetchall()
         if pacientes:
@@ -30,7 +29,6 @@ def add_consulta_plano(dados):
                         SELECT ID_func
                         FROM medico
                         WHERE crm = {crm}
-                        LIMIT 1;
                     """.format(crm = crm_medico))
         medicos = cur.fetchall()
         if medicos:
@@ -42,8 +40,7 @@ def add_consulta_plano(dados):
                         SELECT ID_empresa, num_plano
                         FROM plano_saude
                         WHERE nome LIKE '%{plano}%'
-                        AND ID_empresa IN (SELECT ID_empresa FROM empresa WHERE nome LIKE '%{empresa}%';)
-                        LIMIT 1;
+                        AND ID_empresa IN (SELECT ID_empresa FROM empresa WHERE nome LIKE '%{empresa}%')
                     """.format(plano=nome_plano, empresa=empresa_plano))
         planos = cur.fetchall()
         if planos:
@@ -78,8 +75,7 @@ def add_consulta_particular(dados):
         cur.execute("""
                         SELECT ID_paciente
                         FROM paciente
-                        WHERE cpf = {cpf}
-                        LIMIT 1;
+                        WHERE cpf = '{cpf}';
                     """.format(cpf = cpf_paciente))
         pacientes = cur.fetchall()
         if pacientes:
@@ -90,8 +86,7 @@ def add_consulta_particular(dados):
         cur.execute("""
                         SELECT ID_func
                         FROM medico
-                        WHERE crm = {crm}
-                        LIMIT 1;
+                        WHERE crm = {crm};
                     """.format(crm = crm_medico))
         medicos = cur.fetchall()
         if medicos:
