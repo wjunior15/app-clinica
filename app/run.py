@@ -4,6 +4,7 @@ import source.medico_eventos as find_medico_eventos
 import source.empresa_atendimentos as find_empresa_atendimentos
 import source.receitas_medico as find_receitas_medico
 import source.alteracao_dados_consulta as change_consulta
+import source.add_nova_consulta as add_consulta
 app = Flask(__name__)
 
 if(__name__ == "__main__"):
@@ -63,6 +64,24 @@ if(__name__ == "__main__"):
             stt_msg, stt_code = change_consulta.altera_data_hora(dados)
             return jsonify({"msg":stt_msg}), stt_code
         
+        else:
+            return jsonify({"erro":"Dados insuficientes"}), 404
+        
+    @app.route('/consulta/nova/plano', methods=['POST'])
+    def nova_consulta_plano():
+        dados = request.get_json()
+        if "data" in dados and "hora" in dados and "paciente" in dados and "medico" in dados and "especialidade" in dados and "empresa" in dados and "plano" in dados:
+            stt_msg, stt_code = add_consulta.add_consulta_plano(dados)
+            return jsonify({"msg":stt_msg}), stt_code
+        else:
+            return jsonify({"erro":"Dados insuficientes"}), 404
+        
+    @app.route('/consulta/nova/particular', methods=['POST'])
+    def nova_consulta_particular():
+        dados = request.get_json()
+        if "data" in dados and "hora" in dados and "paciente" in dados and "medico" in dados and "especialidade" in dados:
+            stt_msg, stt_code = add_consulta.add_consulta_particular(dados)
+            return jsonify({"msg":stt_msg}), stt_code
         else:
             return jsonify({"erro":"Dados insuficientes"}), 404
 
