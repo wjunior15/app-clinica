@@ -50,13 +50,15 @@ VALUES
 INSERT INTO receita (ID_receita, descricao, data_receita)
 VALUES 
     ('550e8400-e29b-41d4-a716-446655440009', 'Prescription 3', '2024-05-15'),
-    ('550e8400-e29b-41d4-a716-446655440010', 'Prescription 4', '2024-06-20');
+    ('550e8400-e29b-41d4-a716-446655440010', 'Prescription 4', '2024-06-20'),
+    ('550e8400-e29b-41d4-a716-446655440017', 'Prescription 5', '2024-07-15'),
+    ('550e8400-e29b-41d4-a716-446655440018', 'Prescription 6', '2024-08-25');
 
 -- Inserir mais dados de amostra na tabela medicamento
 INSERT INTO medicamento (cod_remedio, nome, dose)
 VALUES 
-    (3, 'Medicine C', 15),
-    (4, 'Medicine D', 8);
+    (5, 'Medicine C', 15),
+    (6, 'Medicine D', 8);
 
 -- Inserir mais dados de amostra na tabela procedimento
 -- Inserir dados adicionais na tabela procedimento
@@ -81,7 +83,9 @@ VALUES
 INSERT INTO remedio_receita (ID_receita, cod_remedio)
 VALUES 
     ('550e8400-e29b-41d4-a716-446655440009', 3),
-    ('550e8400-e29b-41d4-a716-446655440010', 4);
+    ('550e8400-e29b-41d4-a716-446655440010', 4),
+    ('550e8400-e29b-41d4-a716-446655440017', 5),
+    ('550e8400-e29b-41d4-a716-446655440018', 6); 
 
 -- Inserir mais dados de amostra na tabela ctt_emergencia_paciente
 INSERT INTO ctt_emergencia_paciente (ID_paciente, telefone_ctt, parentesco)
@@ -91,10 +95,10 @@ VALUES
 
 -- Inserir dados adicionais na tabela consulta
 -- Inserir dados adicionais na tabela consulta
-INSERT INTO consulta (ID_paciente, ID_medico, ID_empresa, num_plano, data_consulta, horas, status_consulta, especialidade)
+INSERT INTO consulta (ID_paciente, ID_medico, ID_empresa, num_plano, data_consulta, horas, status_consulta, especialidade, ID_receita)
 VALUES 
-    ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440005', 2, '2024-09-10', '10:30:00', 'Scheduled', 'Cardiology'),
-    ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440008', '550e8400-e29b-41d4-a716-446655440005', 2, '2024-10-15', '11:45:00', 'Completed', 'Orthopedics');
+    ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440007', '550e8400-e29b-41d4-a716-446655440005', 2, '2024-09-10', '10:30:00', 'Scheduled', 'Cardiology', '550e8400-e29b-41d4-a716-446655440017'),
+    ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440008', '550e8400-e29b-41d4-a716-446655440005', 2, '2024-10-15', '11:45:00', 'Completed', 'Orthopedics', '550e8400-e29b-41d4-a716-446655440018');
 
 
 -- Atualizar registros existentes na tabela funcionario para definir id_dept como NULL

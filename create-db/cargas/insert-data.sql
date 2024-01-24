@@ -50,13 +50,17 @@ VALUES
 INSERT INTO receita (ID_receita, descricao, data_receita)
 VALUES 
     ('550e8400-e29b-41d4-a716-446655440007', 'Prescription 1', '2024-01-15'),
-    ('550e8400-e29b-41d4-a716-446655440008', 'Prescription 2', '2024-02-20');
+    ('550e8400-e29b-41d4-a716-446655440008', 'Prescription 2', '2024-02-20'),
+    ('550e8400-e29b-41d4-a716-446655440015', 'Prescription 3', '2024-05-20'),
+    ('550e8400-e29b-41d4-a716-446655440016', 'Prescription 4', '2024-06-10');
 
 -- Insert sample data into medicamento table
 INSERT INTO medicamento (cod_remedio, nome, dose)
 VALUES 
     (1, 'Medicine A', 10),
-    (2, 'Medicine B', 5);
+    (2, 'Medicine B', 5),
+    (3,'Paracetamol', 500),
+    (4,'Ibuprofeno', 200);
 
 -- Insert sample data into procedimento table
 -- Continue inserting sample data into procedimento table
@@ -81,7 +85,11 @@ VALUES
 INSERT INTO remedio_receita (ID_receita, cod_remedio)
 VALUES 
     ('550e8400-e29b-41d4-a716-446655440007', 1),
-    ('550e8400-e29b-41d4-a716-446655440008', 2);
+    ('550e8400-e29b-41d4-a716-446655440008', 2),
+    ('550e8400-e29b-41d4-a716-446655440015', 3),
+    ('550e8400-e29b-41d4-a716-446655440015', 4),
+    ('550e8400-e29b-41d4-a716-446655440016', 4),
+    ('550e8400-e29b-41d4-a716-446655440016', 1);
 
 -- Insert sample data into ctt_emergencia_paciente table
 INSERT INTO ctt_emergencia_paciente (ID_paciente, telefone_ctt, parentesco)
@@ -90,10 +98,10 @@ VALUES
     ('550e8400-e29b-41d4-a716-446655440002', '4445556666', 'Friend');
 
 -- Insert sample data into consulta table
-INSERT INTO consulta (ID_paciente, ID_medico, ID_empresa, num_plano, data_consulta, horas, status_consulta, especialidade)
+INSERT INTO consulta (ID_paciente, ID_medico, ID_empresa, num_plano, data_consulta, horas, status_consulta, especialidade, ID_receita)
 VALUES 
-    ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440005', '550e8400-e29b-41d4-a716-446655440003', 1, '2024-03-10', '10:00:00', 'Scheduled', 'Orthopedics'),
-    ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440003', 2, '2024-04-05', '11:30:00', 'Completed', 'Cardiology');
+    ('550e8400-e29b-41d4-a716-446655440001', '550e8400-e29b-41d4-a716-446655440005', '550e8400-e29b-41d4-a716-446655440003', 1, '2024-03-10', '10:00:00', 'Scheduled', 'Orthopedics', '550e8400-e29b-41d4-a716-446655440015'),
+    ('550e8400-e29b-41d4-a716-446655440002', '550e8400-e29b-41d4-a716-446655440006', '550e8400-e29b-41d4-a716-446655440003', 2, '2024-04-05', '11:30:00', 'Completed', 'Cardiology', '550e8400-e29b-41d4-a716-446655440016');
 
 -- Update existing records in funcionario table to set id_dept to NULL
 UPDATE funcionario

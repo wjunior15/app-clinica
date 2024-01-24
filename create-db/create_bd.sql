@@ -160,12 +160,14 @@ CREATE TABLE consulta(
     num_plano INT,
     data_consulta DATE NOT NULL,
     horas TIME NOT NULL,
+    ID_receita UUID,
     status_consulta VARCHAR(50) NOT NULL,
     especialidade VARCHAR(50) NOT NULL,
     PRIMARY KEY(ID_paciente, ID_medico, data_consulta),
     FOREIGN KEY(ID_paciente) REFERENCES paciente(ID_paciente),
     FOREIGN KEY(ID_medico) REFERENCES medico(ID_func),
-    FOREIGN KEY(ID_empresa, num_plano) REFERENCES plano_saude(ID_empresa, num_plano)
+    FOREIGN KEY(ID_empresa, num_plano) REFERENCES plano_saude(ID_empresa, num_plano),
+    FOREIGN KEY(ID_receita) REFERENCES receita(ID_receita)
 );
 
 ALTER TABLE funcionario ADD CONSTRAINT fk_func_dept FOREIGN KEY(ID_dept) REFERENCES departamento(ID_dept);
