@@ -88,7 +88,7 @@ def consulta_medico(dados):
         arr_eventos = []
         for row in rows:
             dict_evento = {
-                'medico':row[0],
+                'paciente':row[0],
                 'horario':row[1].strftime("%H:%M"),
                 'status':row[2],
                 'especialidade':row[3],
