@@ -35,7 +35,7 @@ if(__name__ == "__main__"):
         else:
             return jsonify({'status':'error'}), 404
         
-    @app.route('/empresa/atendimentos', methods=['GET'])
+    @app.route('/empresa/atendimentos', methods=['GET','POST'])
     def atendimentos_empresa():
         dados = request.get_json()
         if "cnpj" in dados:
@@ -44,7 +44,7 @@ if(__name__ == "__main__"):
         else:
             return jsonify({'status':'error'}), 404
         
-    @app.route('/receitas/medico', methods=['GET'])
+    @app.route('/receitas/medico', methods=['GET','POST'])
     def receitas_medico():
         dados = request.get_json()
         if "crm" in dados:
