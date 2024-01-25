@@ -1,0 +1,132 @@
+##Endpoints TP
+
+GET - agenda_paciente_data - "http://127.0.0.1:5000/paciente/eventos"
+json:
+{
+    "nome":"John",
+    "data_buscada":"10/03/2024"
+}
+
+
+GET - agenda_paciente_geral - "http://127.0.0.1:5000/paciente/eventos"
+json:
+{
+    "nome":"John"
+}
+
+
+GET - agenda_medico_data - "http://127.0.0.1:5000/medico/eventos"
+json:
+{
+    "nome":"Alice",
+    "data_buscada":"10/03/2024"
+}
+
+
+GET - agenda_medico_geral - "http://127.0.0.1:5000/medico/eventos"
+json:
+{
+    "nome":"Alice"
+}
+
+
+GET - atendimentos_empresa - "http://127.0.0.1:5000/empresa/atendimentos"
+json:
+{
+    "cnpj":"12345678901234"
+}
+
+
+GET - receitas_medico - "http://127.0.0.1:5000/receitas/medico"
+json:
+{
+    "crm":"12354"
+}
+
+
+POST - altera_data_consulta - "http://127.0.0.1:5000/consulta/alteracao"
+json:
+{
+    "paciente":"12345678901",
+    "medico":"Luana Rodrigues",
+    "data_atual":"10/09/2024",
+    "nova_data":"30/01/2024",
+    "hora_atual":"10:30",
+    "nova_hora":"11:00"
+}
+
+
+POST - altera_data_consulta - "http://127.0.0.1:5000/consulta/alteracao"
+json:
+{
+    "paciente":"12345678901",
+    "medico":"Luana Rodrigues",
+    "data":"30/01/2024",
+    "hora":"11:00",
+    "novo_status":"Scheduled"
+}
+
+POST - add_consulta_plano - "http://127.0.0.1:5000/consulta/nova/plano"
+json:
+{
+    "paciente":"12345678901",
+    "medico":"67890",
+    "data":"27/01/2024",
+    "hora":"10:30",
+    "empresa":"ABC",
+    "plano":"Basic",
+    "especialidade":"Generalist"
+}
+
+POST - add_consulta_particular - "http://127.0.0.1:5000/consulta/nova/particular"
+json:
+{
+    "paciente":"98765432123",
+    "medico":"12354",
+    "data":"12/02/2024",
+    "hora":"08:30",
+    "especialidade":"Cardiology"
+}
+
+EXEMPLO REQUISIÇÃO EM PYTHON (requests):
+import requests
+import json
+
+url = "http://127.0.0.1:5000/consulta/nova/particular"
+
+payload = json.dumps({
+  "paciente": "98765432123",
+  "medico": "12354",
+  "data": "12/02/2024",
+  "hora": "08:30",
+  "especialidade": "Cardiology"
+})
+headers = {
+  'Content-Type': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+
+
+EXEMPLO REQUISIÇÃO JS (JQuery):
+var settings = {
+  "url": "http://127.0.0.1:5000/consulta/nova/particular",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "paciente": "98765432123",
+    "medico": "12354",
+    "data": "12/02/2024",
+    "hora": "08:30",
+    "especialidade": "Cardiology"
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
