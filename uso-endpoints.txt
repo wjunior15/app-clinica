@@ -119,11 +119,7 @@ var settings = {
     "Content-Type": "application/json"
   },
   "data": JSON.stringify({
-    "paciente": "98765432123",
-    "medico": "12354",
-    "data": "12/02/2024",
-    "hora": "08:30",
-    "especialidade": "Cardiology"
+    "nome": name
   }),
 };
 

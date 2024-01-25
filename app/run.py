@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import source.paciente_eventos as find_paciente_eventos
 import source.medico_eventos as find_medico_eventos
 import source.empresa_atendimentos as find_empresa_atendimentos
@@ -6,6 +7,7 @@ import source.receitas_medico as find_receitas_medico
 import source.alteracao_dados_consulta as change_consulta
 import source.add_nova_consulta as add_consulta
 app = Flask(__name__)
+CORS(app)
 
 if(__name__ == "__main__"):
     

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta Agenda do Paciente</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+<h2>Agenda do Paciente</h2>
+
+<form id="apiForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <button type="submit">Search</button>
+</form>
+
+<table id="resultTable" style="display: none;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <!-- Add other fields as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Results will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+$(document).ready(function() {
+    // Intercept the form submission
+    $("#apiForm").submit(function(event) {
+        event.preventDefault();
+
+        // Get the entered name
+        var name = $("#name").val();
+
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify({
+            "nome": name
+        });
+
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
+        };
+
+        fetch("http://127.0.0.1:5000/paciente/eventos", requestOptions)
+        .then(response => response.text())
+        .then(result => console.log(result))
+        .catch(error => console.log('error', error));
+                
+                });
+            });
+
+    // Function to display results in the table
+    function displayResults(data) {
+        // Clear previous results
+        $("#resultTable tbody").empty();
+
+        // Display results in the table
+        data.forEach(function(item) {
+            var row = $("<tr>");
+            row.append($("<td>").text(item.id));
+            row.append($("<td>").text(item.name));
+            // Add other fields as needed
+
+            $("#resultTable tbody").append(row);
+        });
+
+        // Show the table
+        $("#resultTable").show();
+    }
+</script>
+
+</body>
+</html>
