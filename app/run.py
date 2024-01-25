@@ -23,7 +23,7 @@ if(__name__ == "__main__"):
         else:
             return jsonify({'status':'error'}), 404
     
-    @app.route('/medico/eventos', methods=['GET'])
+    @app.route('/medico/eventos', methods=['GET','POST'])
     def eventos_medico():
         dados = request.get_json()
         if "nome" in dados and "data_buscada" in dados:
