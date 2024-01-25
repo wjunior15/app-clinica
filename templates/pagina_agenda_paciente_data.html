@@ -8,18 +8,19 @@
 </head>
 <body>
 
-<h2>Agenda do Paciente</h2>
+<h2>Agenda do Paciente por Data</h2>
 
 <form id="apiForm">
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" required>
+    <label for="name">Data:</label>
+    <input type="text" id="date" name="date" required>
     <button type="submit">Search</button>
 </form>
 
 <table id="resultTable" style="display: none;">
     <thead>
         <tr>
-            <th>Data</th>
             <th>Especialidade</th>
             <th>Horário</th>
             <th>Médico</th>
@@ -40,12 +41,14 @@ $(document).ready(function() {
 
         // Get the entered name
         var name = $("#name").val();
+        var date = $("#date").val();
 
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
         var raw = JSON.stringify({
-            "nome": name
+            "nome": name,
+            "data_buscada": date
         });
 
         var requestOptions = {
@@ -71,7 +74,6 @@ $(document).ready(function() {
         // Display results in the table
         data.forEach(function(item) {
             var row = $("<tr>");
-            row.append($("<td>").text(item.data));
             row.append($("<td>").text(item.especialidade));
             row.append($("<td>").text(item.horario));
             row.append($("<td>").text(item.medico));

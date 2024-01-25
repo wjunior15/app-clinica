@@ -11,7 +11,7 @@ CORS(app)
 
 if(__name__ == "__main__"):
     
-    @app.route('/paciente/eventos', methods=['GET'])
+    @app.route('/paciente/eventos', methods=['GET','POST'])
     def eventos_paciente():
         dados = request.get_json()
         if "nome" in dados and "data_buscada" in dados:
