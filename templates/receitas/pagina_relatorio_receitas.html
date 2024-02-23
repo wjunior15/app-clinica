@@ -24,21 +24,17 @@
             <th>Medicamento</th>
             <th>Médico</th>
             <th>Paciente</th>
-            <!-- Add other fields as needed -->
         </tr>
     </thead>
     <tbody>
-        <!-- Results will be inserted here -->
     </tbody>
 </table>
 
 <script>
 $(document).ready(function() {
-    // Intercept the form submission
     $("#apiForm").submit(function(event) {
         event.preventDefault();
 
-        // Get the entered name
         var crm = $("#crm").val();
 
         var myHeaders = new Headers();
@@ -65,10 +61,8 @@ $(document).ready(function() {
 
     // Function to display results in the table
     function displayResults(data) {
-        // Clear previous results
         $("#resultTable tbody").empty();
 
-        // Display results in the table
         data.forEach(function(item) {
             var row = $("<tr>");
             row.append($("<td>").text(item.data));
@@ -76,12 +70,10 @@ $(document).ready(function() {
             row.append($("<td>").text(item.medicamento));
             row.append($("<td>").text(item.medico));
             row.append($("<td>").text(item.paciente));
-            // Add other fields as needed
 
             $("#resultTable tbody").append(row);
         });
 
-        // Show the table
         $("#resultTable").show();
     }
 </script>
